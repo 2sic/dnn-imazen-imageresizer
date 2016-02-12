@@ -1,0 +1,96 @@
+﻿<dotnetnuke type="Package" version="5.0">
+  <packages>
+    <package name="2sic_Imazen_ImageResizerPro" type="Module" version="04.00.05">
+      <friendlyName>2sic presents Imazen ImageResizer Pro</friendlyName>
+      <description>The Imazen ImageResizer Pro is the legendary ImageResizer by Imazen. The Pro-package contains some advanced plugins which are AGPL licensed. If you need non-AGPL components, use the 2sic_Imazen_ImageResizer - or better: license the pro as a commercial component from Imazen.</description>
+      <iconFile>icon.png</iconFile>
+      <owner>
+        <name>2sic + Imazen</name>
+        <organization>2sic internet solutions (Switzerland)</organization>
+        <url>http://2sxc.org/</url>
+        <email>info@2sxc.org</email>
+      </owner>
+      <license src="License.txt"></license>
+      <releaseNotes src="ReleaseNotes.txt"></releaseNotes>
+      <azureCompatible>true</azureCompatible>
+      <dependencies>
+        <dependency type="CoreVersion">07.02.00</dependency>
+      </dependencies>
+      <components>
+        <component type="Script">
+          <scripts>
+            <basePath>DesktopModules\ToSIC_Imazen_ImageResizerPro</basePath>
+          </scripts>
+        </component>
+        <component type="Assembly">
+          <assemblies>
+            <basePath>bin</basePath>
+            <assembly>
+              <name>ImageResizer.dll</name>
+            </assembly>
+            <assembly>
+              <name>ImageResizer.Plugins.DiskCache.dll</name>
+            </assembly>
+            <!--<assembly>
+              <name>protobuf-net.dll</name>
+            </assembly>-->
+          </assemblies>
+        </component>
+
+        <component type="File">
+          <files>
+            <basePath>DesktopModules/ToSIC_Imazen_ImageResizerPro</basePath>
+            <file>
+              <name>icon.png</name>
+            </file>
+            <file>
+              <name>License.txt</name>
+            </file>
+            <file>
+              <name>ReleaseNotes.txt</name>
+            </file>
+          </files>
+        </component>
+					
+        <component type="Config">
+          <config>
+            <configFile>web.config</configFile>
+            <install>
+              <configuration>
+                <nodes>
+                  <node path="/configuration/configSections" action="update" key="name" collision="ignore">
+                    <section name="resizer" type="ImageResizer.ResizerSection,ImageResizer"  requirePermission="false" />
+                  </node>
+                  <node path="/configuration" targetpath="/configuration/resizer" action="update" collision="ignore">
+                    <resizer>
+                      <pipeline fakeExtensions=".ashx" />
+                      <plugins>
+                        <add name="DiskCache" />
+                      </plugins>
+                    </resizer>
+                  </node>
+                  <node path="/configuration/system.web/httpModules" action="update" key="name" collision="ignore">
+                    <add name="ImageResizingModule" type="ImageResizer.InterceptModule"/>
+                  </node>
+                  <node path="/configuration/system.webServer/modules" action="update" key="name" collision="ignore">
+                    <add name="ImageResizingModule" type="ImageResizer.InterceptModule"/>
+                  </node>
+                </nodes>
+              </configuration>
+            </install>
+            <uninstall>
+              <configuration>
+                <nodes>
+                  <node path="/configuration/configSections/section[@name='resizer']" action="remove" />
+                  <node path="/configuration/resizer" action="remove" />
+                  <node path="/configuration/system.web/httpModules/add[@name='ImageResizingModule']" action="remove" />
+                  <node path="/configuration/system.webServer/modules/add[@name='ImageResizingModule']" action="remove" />
+                </nodes>
+              </configuration>
+            </uninstall>
+          </config>
+        </component>
+      </components>
+    </package>
+  </packages>
+</dotnetnuke>
