@@ -59,24 +59,14 @@
                     <section name="resizer" type="ImageResizer.ResizerSection,ImageResizer"  requirePermission="false" />
                   </node>
                   
-                  <!-- remove potential tinycache-->
-                  <node path="/configuration/resizer/plugins/add[@name='TinyCache']" action="remove" key="name" collision="ignore" />
-
-                  <!-- register resizer if missing -->
-                  <node path="/configuration" action="update" key="name" collision="ignore">
-                    <resizer/>
+                  <node path="/configuration" targetpath="/configuration/resizer" action="update" collision="save">
+                    <resizer>
+                      <plugins>
+                        <add name="DiskCache" />
+                      </plugins>
+                    </resizer>
                   </node>
-
-                  <!-- register plugins if missing -->
-                  <node path="/configuration/resizer" action="update" key="name" collision="ignore">
-                    <plugins/>
-                  </node>
-
-                  <!-- register the diskcache -->
-                  <node path="/configuration/resizer/plugins" action="update" key="name" collision="ignore">
-										<add name="DiskCache" />
-									</node>
-                    
+                  
                     <!-- Register the http-modules in old/new versions as needed -->
                   <node path="/configuration/system.web/httpModules" action="update" key="name" collision="ignore">
                     <add name="ImageResizingModule" type="ImageResizer.InterceptModule"/>

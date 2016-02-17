@@ -36,9 +36,6 @@
             <assembly>
               <name>ImageResizer.Plugins.TinyCache.dll</name>
             </assembly>
-            <!--<assembly>
-              <name>protobuf-net.dll</name>
-            </assembly>-->
           </assemblies>
         </component>
 
@@ -67,25 +64,15 @@
                     <section name="resizer" type="ImageResizer.ResizerSection,ImageResizer"  requirePermission="false" />
                   </node>
                   
-                  <!-- remove potential DiskCache-->
-                  <node path="/configuration/resizer/plugins/add[@name='DiskCache']" action="remove" key="name" collision="ignore" />
-									
-                  <!-- register resizer if missing -->
-                  <node path="/configuration" action="update" key="name" collision="ignore">
-                    <resizer/>
+                  <node path="/configuration" targetpath="/configuration/resizer" action="update" collision="save">
+                    <resizer>
+                      <plugins>
+                        <add name="TinyCache" />
+                      </plugins>
+                    </resizer>
                   </node>
 
-                  <!-- register plugins if missing -->
-                  <node path="/configuration/resizer" action="update" key="name" collision="ignore">
-										<plugins/>
-									</node>
-                    
-                  <!-- register the TinyCache -->
-                  <node path="/configuration/resizer/plugins" action="update" key="name" collision="ignore">
-										<add name="TinyCache" />
-									</node>
-                    
-                    <!-- Register the http-modules in old/new versions as needed -->
+                  <!-- Register the http-modules in old/new versions as needed -->
                   <node path="/configuration/system.web/httpModules" action="update" key="name" collision="ignore">
                     <add name="ImageResizingModule" type="ImageResizer.InterceptModule"/>
                   </node>
