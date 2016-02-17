@@ -63,7 +63,7 @@
       <Output TaskParameter="Include" ItemName="LightManifest" />
     </CreateItem>
 
-    <CreateItem Include="License-Light.txt">
+    <CreateItem Include="License.txt">
       <Output TaskParameter="Include" ItemName="LightTxt" />
     </CreateItem>
 

@@ -10,7 +10,7 @@
         <url>http://2sxc.org/</url>
         <email>info@2sxc.org</email>
       </owner>
-      <license src="License-Pro.txt"></license>
+      <license src="License.txt"></license>
       <releaseNotes src="ReleaseNotes.txt"></releaseNotes>
       <azureCompatible>true</azureCompatible>
       <dependencies>
@@ -31,9 +31,6 @@
             <assembly>
               <name>ImageResizer.Plugins.DiskCache.dll</name>
             </assembly>
-            <!--<assembly>
-              <name>protobuf-net.dll</name>
-            </assembly>-->
           </assemblies>
         </component>
 
@@ -44,7 +41,7 @@
               <name>icon.png</name>
             </file>
             <file>
-              <name>License-Pro.txt</name>
+              <name>License.txt</name>
             </file>
             <file>
               <name>ReleaseNotes.txt</name>

@@ -15,7 +15,7 @@
         <url>http://2sxc.org/</url>
         <email>info@2sxc.org</email>
       </owner>
-      <license src="License-Light.txt"></license>
+      <license src="License.txt"></license>
       <releaseNotes src="ReleaseNotes.txt"></releaseNotes>
       <azureCompatible>true</azureCompatible>
       <dependencies>
@@ -49,7 +49,7 @@
               <name>icon.png</name>
             </file>
             <file>
-              <name>License-Light.txt</name>
+              <name>License.txt</name>
             </file>
             <file>
               <name>ReleaseNotes.txt</name>
