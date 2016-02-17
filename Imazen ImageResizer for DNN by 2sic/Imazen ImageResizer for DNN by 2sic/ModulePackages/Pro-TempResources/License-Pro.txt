@@ -1,9 +1,0 @@
-Most ImageResizer plugins are under the permissive Apache 2 license.
-
-The remainder are available under any of several commercial - or copyleft - licenses (you choose).
-
-This Pro-Package includes plugins under the copyleft AGPL license. 
-
-This means, if you create anything using the additonal plugins, you must also publish your work as open-source, or purchase a license. 
-
-Please visit http://imageresizing.net/licenses/

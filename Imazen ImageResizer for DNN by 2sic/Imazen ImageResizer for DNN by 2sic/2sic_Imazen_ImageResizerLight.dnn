@@ -1,6 +1,6 @@
 ﻿<dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="2sic_Imazen_ImageResizerPro" type="Library" version="04.00.05">
+    <package name="2sic_Imazen_ImageResizerLight" type="Library" version="04.00.05">
       <friendlyName>2sic presents Imazen ImageResizer Light</friendlyName>
       <description>The Imazen ImageResizer Light is the legendary ImageResizer by Imazen. 
       The Light-package contains only the basic plugins which are Apache 2.0 licensed. 
@@ -70,6 +70,11 @@
                   <!-- remove potential DiskCache-->
                   <node path="/configuration/resizer/plugins/add[@name='DiskCache']" action="remove" key="name" collision="ignore" />
 									
+                  <!-- register resizer if missing -->
+                  <node path="/configuration" action="update" key="name" collision="ignore">
+                    <resizer/>
+                  </node>
+
                   <!-- register plugins if missing -->
                   <node path="/configuration/resizer" action="update" key="name" collision="ignore">
 										<plugins/>
@@ -80,13 +85,6 @@
 										<add name="TinyCache" />
 									</node>
                     
-                  <!-- add http pipeline ashx (not sure why...) -->
-                  <node path="/configuration" targetpath="/configuration/resizer" action="update" collision="ignore">
-                    <resizer>
-                      <pipeline fakeExtensions=".ashx" />
-                    </resizer>
-                  </node>
-                  
                     <!-- Register the http-modules in old/new versions as needed -->
                   <node path="/configuration/system.web/httpModules" action="update" key="name" collision="ignore">
                     <add name="ImageResizingModule" type="ImageResizer.InterceptModule"/>
