@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="windows-1252"?>
+
+<!-- WARNING, WARNING, WARNING -->
+<!-- REMEMBER THAT IF YOU MODIFY THE TARGETS FILE YOU NEED TO CLOSE/OPEN THE PROJECT FOR THE CHANGES TO TAKE EFFECT -->
+
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="PackageModuleLight" Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <!-- Move the node_modules folder outside the project folder - path length issue -->
+
+    <PropertyGroup>
+      <LightDnnFileName>2sic_Imazen_ImageResizerLight</LightDnnFileName>
+      <PackageNameLight>2sic_Imazen_ImageResizerLight</PackageNameLight>
+      <LightTempPackageFolder>$(MSBuildProjectDirectory)\ModulePackages\Light-Temp</LightTempPackageFolder>
+      <LightTempPackageResourcesFolder>$(MSBuildProjectDirectory)\ModulePackages\Light-TempResources</LightTempPackageResourcesFolder>
+      <DllFolder>$(MSBuildProjectDirectory)\bin\Release</DllFolder>
+    </PropertyGroup>    
+    
+    
+    <XmlRead Prefix="n"
+                    Namespace="http://schemas.microsoft.com/developer/msbuild/2003"
+                    XPath="dotnetnuke/packages/package[1]/@version"
+                    XmlFileName="$(LightDnnFileName).dnn">
+      <Output TaskParameter="Value" PropertyName="Version" />
+    </XmlRead>
+
+
+    <ItemGroup>
+      <DefaultExclude Include="**\*.dnn" />
+      
+      <DefaultExclude Include="**\bin\**" />
+      <DefaultExclude Include="**\*.user" />
+      <DefaultExclude Include="**\*.suo" />
+      <DefaultExclude Include="**\*.zip" />
+      <DefaultExclude Include="**\*.zip" />
+      <DefaultExclude Include="Js\EditDataSource\**" />
+      <DefaultExclude Include="Styles\EditDataSource\**" />
+      <DefaultExclude Include="ModulePackages\**" />
+			<DefaultExclude Include="2Sexy Content Testing\**" />
+			<DefaultExclude Include=".git\**" />
+      <DefaultExclude Include="**\node_modules\**" />
+      <DefaultExclude Include="**\bower_components\**" />
+      <DefaultExclude Include="**\grunt-tasks\**" />
+      <DefaultExclude Include="packages\**" />
+      <DefaultExclude Include="src\**" />
+      <DefaultExclude Include="tmp\**" />
+      <DefaultExclude Include=".vs\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <LightInstallInclude Include="**\*.txt"  Exclude="@(DefaultExclude);**\obj\**;**\_ReSharper*\**;License.txt;ReleaseNotes.txt" />
+      <LightInstallInclude Include="**\*.png" Exclude="@(DefaultExclude);icon.png" />
+      <LightInstallInclude Include="**\*.config" Exclude="@(DefaultExclude);**\web-Deploy.config" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <!--<LightAssemblies Include="$(DllFolder)\protobuf-net.dll" />-->
+      <!--<LightAssemblies Include="$(DllFolder)\ImageResizer.Plugins.DiskCache.dll" />-->
+      <LightAssemblies Include="$(DllFolder)\ImageResizer.Plugins.TinyCache.dll" />
+      <LightAssemblies Include="$(DllFolder)\ImageResizer.dll" />
+    </ItemGroup>
+    
+    <CreateItem Include="$(LightDnnFileName).dnn">
+      <Output TaskParameter="Include" ItemName="LightManifest" />
+    </CreateItem>
+
+    <CreateItem Include="License-Light.txt">
+      <Output TaskParameter="Include" ItemName="LightTxt" />
+    </CreateItem>
+
+    <CreateItem Include="ReleaseNotes.txt">
+      <Output TaskParameter="Include" ItemName="LightTxt" />
+    </CreateItem>
+
+    <CreateItem Include="icon.png">
+      <Output TaskParameter="Include" ItemName="LightIcon" />
+    </CreateItem>
+    
+    <Copy SourceFiles="@(LightManifest)" DestinationFolder="$(LightTempPackageFolder)" />
+    <Copy SourceFiles="@(LightIcon)" DestinationFolder="$(LightTempPackageFolder)" />
+    <Copy SourceFiles="@(LightTxt)" DestinationFolder="$(LightTempPackageFolder)" />
+    <Copy SourceFiles="@(LightAssemblies)" DestinationFolder="$(LightTempPackageFolder)\bin"/>
+    
+    <!-- create the INSTALL RESOURCES.ZIP file -->
+    <Copy SourceFiles="@(LightInstallInclude)" DestinationFolder="$(LightTempPackageResourcesFolder)\%(RecursiveDir)" />
+
+    <CreateItem Include="$(LightTempPackageResourcesFolder)\**\*.*">
+      <Output TaskParameter="Include" ItemName="ResourcesContent" />
+    </CreateItem>
+
+    <Zip Files="@(ResourcesContent)" WorkingDirectory="$(LightTempPackageResourcesFolder)" ZipFileName="$(LightTempPackageFolder)\Resources.zip" />
+
+    <CreateItem Include="$(LightTempPackageFolder)\**\*.*">
+      <Output TaskParameter="Include" ItemName="OutputContent" />
+    </CreateItem>
+    <!-- Create the Install package -->    
+    <Zip Files="@(OutputContent)" WorkingDirectory="$(LightTempPackageFolder)" ZipFileName="ModulePackages/$(PackageNameLight)_$(Version)_Install.$(Extension)" />
+    
+    <!-- Cleanup -->
+    <RemoveDir Directories="$(LightTempPackageFolder)" />
+
+  </Target>
+</Project>

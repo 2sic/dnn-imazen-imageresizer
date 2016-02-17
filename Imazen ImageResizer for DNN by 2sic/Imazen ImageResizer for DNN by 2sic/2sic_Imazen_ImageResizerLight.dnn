@@ -1,8 +1,13 @@
 ﻿<dotnetnuke type="Package" version="5.0">
   <packages>
     <package name="2sic_Imazen_ImageResizerPro" type="Library" version="04.00.05">
-      <friendlyName>2sic presents Imazen ImageResizer Pro</friendlyName>
-      <description>The Imazen ImageResizer Pro is the legendary ImageResizer by Imazen. The Pro-package contains some advanced plugins which are AGPL licensed. If you need non-AGPL components, use the 2sic_Imazen_ImageResizerLight or license the pro as a commercial component from Imazen. </description>
+      <friendlyName>2sic presents Imazen ImageResizer Light</friendlyName>
+      <description>The Imazen ImageResizer Light is the legendary ImageResizer by Imazen. 
+      The Light-package contains only the basic plugins which are Apache 2.0 licensed. 
+      If you need more performance use the Pro-package (AGPL license), 
+      and if you need more performance and want to keep your code private: 
+      license the pro as a commercial component from Imazen.
+      </description>
       <iconFile>DesktopModules\ToSIC_Imazen_ImageResizer\icon.png</iconFile>
       <owner>
         <name>2sic + Imazen</name>
@@ -62,24 +67,26 @@
                     <section name="resizer" type="ImageResizer.ResizerSection,ImageResizer"  requirePermission="false" />
                   </node>
                   
-                  <!-- remove potential tinycache-->
-                  <node path="/configuration/resizer/plugins/add[@name='TinyCache']" action="remove" key="name" collision="ignore" />
-
-                  <!-- register resizer if missing -->
-                  <node path="/configuration" action="update" key="name" collision="ignore">
-                    <resizer/>
-                  </node>
-
+                  <!-- remove potential DiskCache-->
+                  <node path="/configuration/resizer/plugins/add[@name='DiskCache']" action="remove" key="name" collision="ignore" />
+									
                   <!-- register plugins if missing -->
                   <node path="/configuration/resizer" action="update" key="name" collision="ignore">
-                    <plugins/>
-                  </node>
-
-                  <!-- register the diskcache -->
-                  <node path="/configuration/resizer/plugins" action="update" key="name" collision="ignore">
-										<add name="DiskCache" />
+										<plugins/>
 									</node>
                     
+                  <!-- register the TinyCache -->
+                  <node path="/configuration/resizer/plugins" action="update" key="name" collision="ignore">
+										<add name="TinyCache" />
+									</node>
+                    
+                  <!-- add http pipeline ashx (not sure why...) -->
+                  <node path="/configuration" targetpath="/configuration/resizer" action="update" collision="ignore">
+                    <resizer>
+                      <pipeline fakeExtensions=".ashx" />
+                    </resizer>
+                  </node>
+                  
                     <!-- Register the http-modules in old/new versions as needed -->
                   <node path="/configuration/system.web/httpModules" action="update" key="name" collision="ignore">
                     <add name="ImageResizingModule" type="ImageResizer.InterceptModule"/>

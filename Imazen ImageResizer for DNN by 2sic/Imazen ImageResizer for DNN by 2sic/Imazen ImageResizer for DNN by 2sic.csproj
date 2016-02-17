@@ -31,16 +31,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ImageResizer, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ImageResizer.4.0.5\lib\net45\ImageResizer.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Source Binaries\ImageResizer.dll</HintPath>
     </Reference>
     <Reference Include="ImageResizer.Plugins.DiskCache, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ImageResizer.Plugins.DiskCache.4.0.5\lib\net45\ImageResizer.Plugins.DiskCache.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Source Binaries\ImageResizer.Plugins.DiskCache.dll</HintPath>
     </Reference>
     <Reference Include="ImageResizer.Plugins.TinyCache, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ImageResizer.Plugins.TinyCache.4.0.5\lib\net45\ImageResizer.Plugins.TinyCache.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Source Binaries\ImageResizer.Plugins.TinyCache.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -56,16 +56,25 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="2sic_Imazen_ImageResizerLight.dnn" />
     <None Include="2sic_Imazen_ImageResizerPro.dnn" />
-    <None Include="BuildScripts\ModulePackage.Targets" />
+    <None Include="BuildScripts\ModulePackage - Light.Targets">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BuildScripts\ModulePackage - Pro.Targets">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="BuildScripts\MSBuild.Community.Tasks.targets" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="BuildScripts\MSBuild.Community.Tasks.dll" />
     <Content Include="icon.png" />
-    <Content Include="License.txt" />
+    <Content Include="License-Light.txt" />
+    <Content Include="License-Pro.txt" />
     <Content Include="ReleaseNotes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Source Binaries\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -78,11 +87,11 @@
   <!-- new stuff for ms build to create dnn package-->
   <PropertyGroup>
     <Extension>zip</Extension>
-    <DNNFileName>2sic_Imazen_ImageResizerPro</DNNFileName>
-    <PackageName>2sic_Imazen_ImageResizerPro</PackageName>
     <MSBuildCommunityTasksPath>$(ProjectDir)\BuildScripts</MSBuildCommunityTasksPath>
   </PropertyGroup>
-  <Import Project="$(ProjectDir)\BuildScripts\ModulePackage.Targets" />
-  <Target Name="AfterBuild" DependsOnTargets="PackageModule">
+  <Import Project="$(ProjectDir)\BuildScripts\MSBuild.Community.Tasks.Targets" />
+  <Import Project="$(ProjectDir)\BuildScripts\ModulePackage - Pro.Targets" />
+  <Import Project="$(ProjectDir)\BuildScripts\ModulePackage - Light.Targets" />
+  <Target Name="AfterBuild" DependsOnTargets="PackageModulePro;PackageModuleLight">
   </Target>
 </Project>

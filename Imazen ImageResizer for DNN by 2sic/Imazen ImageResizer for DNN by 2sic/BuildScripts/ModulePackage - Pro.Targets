@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="windows-1252"?>
+
+<!-- WARNING, WARNING, WARNING -->
+<!-- REMEMBER THAT IF YOU MODIFY THE TARGETS FILE YOU NEED TO CLOSE/OPEN THE PROJECT FOR THE CHANGES TO TAKE EFFECT -->
+
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="PackageModulePro" Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <!-- Move the node_modules folder outside the project folder - path length issue -->
+    
+    <PropertyGroup>
+      <DNNFileNamePro>2sic_Imazen_ImageResizerPro</DNNFileNamePro>
+      <PackageNamePro>2sic_Imazen_ImageResizerPro</PackageNamePro>
+      <ProTempPackageFolder>$(MSBuildProjectDirectory)\ModulePackages\Pro-Temp</ProTempPackageFolder>
+      <ProTempPackageResourcesFolder>$(MSBuildProjectDirectory)\ModulePackages\Pro-TempResources</ProTempPackageResourcesFolder>
+      <DllFolder>$(MSBuildProjectDirectory)\bin\Release</DllFolder>
+    </PropertyGroup>    
+    
+    <XmlRead Prefix="n"
+                    Namespace="http://schemas.microsoft.com/developer/msbuild/2003"
+                    XPath="dotnetnuke/packages/package[1]/@version"
+                    XmlFileName="$(DNNFileNamePro).dnn">
+      <Output TaskParameter="Value" PropertyName="Version" />
+    </XmlRead>
+
+
+
+    <ItemGroup>
+      <DefaultExclude Include="**\*.dnn" />
+
+      <DefaultExclude Include="**\bin\**" />
+      <DefaultExclude Include="**\*.user" />
+      <DefaultExclude Include="**\*.suo" />
+      <DefaultExclude Include="**\*.zip" />
+      <DefaultExclude Include="**\*.zip" />
+      <DefaultExclude Include="Js\EditDataSource\**" />
+      <DefaultExclude Include="Styles\EditDataSource\**" />
+      <DefaultExclude Include="ModulePackages\**" />
+			<DefaultExclude Include="2Sexy Content Testing\**" />
+			<DefaultExclude Include=".git\**" />
+      <DefaultExclude Include="**\node_modules\**" />
+      <DefaultExclude Include="**\bower_components\**" />
+      <DefaultExclude Include="**\grunt-tasks\**" />
+      <DefaultExclude Include="packages\**" />
+      <DefaultExclude Include="src\**" />
+      <DefaultExclude Include="tmp\**" />
+      <DefaultExclude Include=".vs\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProInclude Include="**\*.txt"  Exclude="@(DefaultExclude);**\obj\**;**\_ReSharper*\**;License.txt;ReleaseNotes.txt" />
+      <ProInclude Include="**\*.png" Exclude="@(DefaultExclude);icon.png" />
+      <ProInclude Include="**\*.config" Exclude="@(DefaultExclude);**\web-Deploy.config" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProAssemblies Include="$(DllFolder)\ImageResizer.Plugins.DiskCache.dll" />
+      <ProAssemblies Include="$(DllFolder)\ImageResizer.dll" />
+    </ItemGroup>
+    
+    <CreateItem Include="$(DNNFileNamePro).dnn">
+      <Output TaskParameter="Include" ItemName="ProManifest" />
+    </CreateItem>
+
+    <CreateItem Include="License-Pro.txt">
+      <Output TaskParameter="Include" ItemName="ProTxt" />
+    </CreateItem>
+
+    <CreateItem Include="ReleaseNotes.txt">
+      <Output TaskParameter="Include" ItemName="ProTxt" />
+    </CreateItem>
+
+    <CreateItem Include="icon.png">
+      <Output TaskParameter="Include" ItemName="ProIcon" />
+    </CreateItem>
+    
+    <Copy SourceFiles="@(ProManifest)" DestinationFolder="$(ProTempPackageFolder)" />
+    <Copy SourceFiles="@(ProIcon)" DestinationFolder="$(ProTempPackageFolder)" />
+    <Copy SourceFiles="@(ProTxt)" DestinationFolder="$(ProTempPackageFolder)" />
+    <Copy SourceFiles="@(ProAssemblies)" DestinationFolder="$(ProTempPackageFolder)\bin"/>
+    
+    <!-- create the INSTALL RESOURCES.ZIP file -->
+    <Copy SourceFiles="@(ProInclude)" DestinationFolder="$(ProTempPackageResourcesFolder)\%(RecursiveDir)" />
+
+    <CreateItem Include="$(ProTempPackageResourcesFolder)\**\*.*">
+      <Output TaskParameter="Include" ItemName="ProResourcesContent" />
+    </CreateItem>
+    
+    <Zip Files="@(ProResourcesContent)" WorkingDirectory="$(ProTempPackageResourcesFolder)" ZipFileName="$(ProTempPackageFolder)\Resources.zip" />
+
+    <CreateItem Include="$(ProTempPackageFolder)\**\*.*">
+      <Output TaskParameter="Include" ItemName="ProOutputContent" />
+    </CreateItem>
+    <!-- Create the Install package -->    
+    <Zip Files="@(ProOutputContent)" WorkingDirectory="$(ProTempPackageFolder)" ZipFileName="ModulePackages/$(PackageNamePro)_$(Version)_Install.$(Extension)" />
+    
+    <!-- Cleanup -->
+    <RemoveDir Directories="$(ProTempPackageFolder)" />
+
+  </Target>
+</Project>
