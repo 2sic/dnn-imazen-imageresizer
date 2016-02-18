@@ -53,8 +53,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProAssemblies Include="$(DllFolder)\ImageResizer.Plugins.DiskCache.dll" />
       <ProAssemblies Include="$(DllFolder)\ImageResizer.dll" />
+      <ProAssemblies Include="$(DllFolder)\ImageResizer.Plugins.DiskCache.dll" />
+      <ProAssemblies Include="$(DllFolder)\ImageResizer.Plugins.SimpleFilters.dll" />
+      <ProAssemblies Include="$(DllFolder)\ImageResizer.Plugins.AdvancedFilters.dll" />
     </ItemGroup>
     
     <CreateItem Include="$(DNNFileNamePro).dnn">
