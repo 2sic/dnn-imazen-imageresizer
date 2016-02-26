@@ -36,6 +36,9 @@
             <assembly>
               <name>ImageResizer.Plugins.TinyCache.dll</name>
             </assembly>
+            <assembly>
+              <name>protobuf-net.dll</name>
+            </assembly>
           </assemblies>
         </component>
 

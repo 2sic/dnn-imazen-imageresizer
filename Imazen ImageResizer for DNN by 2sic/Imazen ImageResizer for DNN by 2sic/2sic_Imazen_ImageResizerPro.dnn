@@ -25,12 +25,23 @@
         <component type="Assembly">
           <assemblies>
             <basePath>bin</basePath>
+            
             <assembly>
-              <name>ImageResizer.dll</name>
+              <name>ImageResizer.Plugins.SimpleFilters.dll</name>
             </assembly>
             <assembly>
-              <name>ImageResizer.Plugins.DiskCache.dll</name>
+              <name>ImageResizer.Plugins.AdvancedFilters.dll</name>
             </assembly>
+            <assembly>
+              <name>AForge.dll</name>
+            </assembly>
+            <assembly>
+              <name>AForge.Imaging.dll</name>
+            </assembly>
+            <assembly>
+              <name>AForge.Math.dll</name>
+            </assembly>
+          
           </assemblies>
         </component>
 
