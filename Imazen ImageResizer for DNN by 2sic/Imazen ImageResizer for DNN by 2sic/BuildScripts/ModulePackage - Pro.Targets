@@ -53,10 +53,13 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProAssemblies Include="$(DllFolder)\ImageResizer.dll" />
-      <ProAssemblies Include="$(DllFolder)\ImageResizer.Plugins.DiskCache.dll" />
-      <ProAssemblies Include="$(DllFolder)\ImageResizer.Plugins.SimpleFilters.dll" />
-      <ProAssemblies Include="$(DllFolder)\ImageResizer.Plugins.AdvancedFilters.dll" />
+      <ProAssemblies Include="$(SourceBinaries)\ImageResizer.dll" />
+      <ProAssemblies Include="$(SourceBinaries)\ImageResizer.Plugins.DiskCache.dll" />
+      <ProAssemblies Include="$(SourceBinaries)\ImageResizer.Plugins.SimpleFilters.dll" />
+      <ProAssemblies Include="$(SourceBinaries)\ImageResizer.Plugins.AdvancedFilters.dll" />
+      <ProAssemblies Include="$(SourceBinaries)\AForge.dll" />
+      <ProAssemblies Include="$(SourceBinaries)\AForge.Imaging.dll" />
+      <ProAssemblies Include="$(SourceBinaries)\AForge.Math.dll" />
     </ItemGroup>
     
     <CreateItem Include="$(DNNFileNamePro).dnn">

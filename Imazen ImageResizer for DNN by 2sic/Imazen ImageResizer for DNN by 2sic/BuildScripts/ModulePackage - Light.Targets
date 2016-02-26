@@ -53,10 +53,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <!--<LightAssemblies Include="$(DllFolder)\protobuf-net.dll" />-->
-      <!--<LightAssemblies Include="$(DllFolder)\ImageResizer.Plugins.DiskCache.dll" />-->
-      <LightAssemblies Include="$(DllFolder)\ImageResizer.Plugins.TinyCache.dll" />
       <LightAssemblies Include="$(DllFolder)\ImageResizer.dll" />
+      <LightAssemblies Include="$(DllFolder)\ImageResizer.Plugins.TinyCache.dll" />
+      <LightAssemblies Include="$(DllFolder)\protobuf-net.dll" />
+      <!-- this is needed by the tinycache -->
     </ItemGroup>
     
     <CreateItem Include="$(LightDnnFileName).dnn">

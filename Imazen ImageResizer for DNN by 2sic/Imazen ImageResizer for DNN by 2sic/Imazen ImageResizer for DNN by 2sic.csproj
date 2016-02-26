@@ -87,6 +87,7 @@
   <PropertyGroup>
     <Extension>zip</Extension>
     <MSBuildCommunityTasksPath>$(ProjectDir)\BuildScripts</MSBuildCommunityTasksPath>
+    <SourceBinaries>$(ProjectDir)\Source Binaries</SourceBinaries>
   </PropertyGroup>
   <Import Project="$(ProjectDir)\BuildScripts\MSBuild.Community.Tasks.Targets" />
   <Import Project="$(ProjectDir)\BuildScripts\ModulePackage - Pro.Targets" />
