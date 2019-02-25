@@ -72,6 +72,7 @@
                       <plugins>
                         <add name="TinyCache" />
                       </plugins>
+					  <pipeline defaultCommands="autorotate.default=true" />
                     </resizer>
                   </node>
 
