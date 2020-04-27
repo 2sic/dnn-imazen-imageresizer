@@ -60,6 +60,9 @@
       <ProAssemblies Include="$(SourceBinaries)\AForge.dll" />
       <ProAssemblies Include="$(SourceBinaries)\AForge.Imaging.dll" />
       <ProAssemblies Include="$(SourceBinaries)\AForge.Math.dll" />
+      <ProAssemblies Include="$(SourceBinaries)\WebP\ImageResizer.Plugins.WebP.dll" />
+      <ProAssemblies Include="$(SourceBinaries)\WebP\Imazen.WebP.dll" />
+      <ProAssemblies Include="$(SourceBinaries)\WebP\libwebp.dll" />
     </ItemGroup>
     
     <CreateItem Include="$(DNNFileNamePro).dnn">

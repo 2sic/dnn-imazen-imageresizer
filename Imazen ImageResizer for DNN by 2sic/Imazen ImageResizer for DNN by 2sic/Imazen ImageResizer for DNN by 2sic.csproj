@@ -71,10 +71,20 @@
     <Content Include="icon.png" />
     <Content Include="License.txt" />
     <Content Include="ReleaseNotes.txt" />
+    <Content Include="Source Binaries\AForge.dll" />
+    <Content Include="Source Binaries\AForge.Imaging.dll" />
+    <Content Include="Source Binaries\AForge.Math.dll" />
+    <Content Include="Source Binaries\ImageResizer.dll" />
+    <Content Include="Source Binaries\ImageResizer.Plugins.AdvancedFilters.dll" />
+    <Content Include="Source Binaries\ImageResizer.Plugins.DiskCache.dll" />
+    <Content Include="Source Binaries\ImageResizer.Plugins.SimpleFilters.dll" />
+    <Content Include="Source Binaries\ImageResizer.Plugins.TinyCache.dll" />
+    <Content Include="Source Binaries\WebP\ImageResizer.Plugins.WebP.dll" />
+    <Content Include="Source Binaries\WebP\Imazen.WebP.dll" />
+    <Content Include="Source Binaries\WebP\libwebp.dll" />
+    <Content Include="Source Binaries\protobuf-net.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Source Binaries\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

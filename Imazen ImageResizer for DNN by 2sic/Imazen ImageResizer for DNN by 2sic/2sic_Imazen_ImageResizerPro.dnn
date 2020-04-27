@@ -41,6 +41,9 @@
             <assembly>
               <name>AForge.Math.dll</name>
             </assembly>
+            <assembly><name>ImageResizer.Plugins.WebP.dll</name></assembly>
+            <assembly><name>Imazen.WebP.dll</name></assembly>
+            <assembly><name>libwebp.dll</name></assembly>
           
           </assemblies>
         </component>
@@ -74,7 +77,7 @@
                     <resizer>
                       <plugins>
                         <add name="DiskCache" />
-						<pipeline defaultCommands="autorotate.default=true" />
+						            <pipeline defaultCommands="autorotate.default=true" />
                       </plugins>
                     </resizer>
                   </node>
