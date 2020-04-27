@@ -1,6 +1,6 @@
 ﻿<dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="2sic_Imazen_ImageResizerPro" type="Library" version="04.00.05">
+    <package name="2sic_Imazen_ImageResizerPro" type="Library" version="04.02.05">
       <friendlyName>2sic presents Imazen ImageResizer Pro</friendlyName>
       <description>The Imazen ImageResizer Pro is the legendary ImageResizer by Imazen. The Pro-package contains some advanced plugins which are AGPL licensed. If you need non-AGPL components, use the 2sic_Imazen_ImageResizerLight or license the pro as a commercial component from Imazen. </description>
       <iconFile>DesktopModules\ToSIC_Imazen_ImageResizer\icon.png</iconFile>

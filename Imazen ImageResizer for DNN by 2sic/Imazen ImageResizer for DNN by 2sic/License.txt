@@ -10,3 +10,6 @@ The  Pro-Package includes plugins under the copyleft AGPL license.
 This means, if you create anything using the additonal plugins, you must also publish your work as open-source, or purchase a license. 
 
 Please visit http://imageresizing.net/licenses/ or http://2sxc.org/license
+
+Our work (creating the DNN bundle) is licensed under MIT, but this in not really relevant to most use cases. 
+Basically if you're using the Resizer in a fully open source setup and publish your work (AGPL-Style) you can also use the pro-edition for free, otherwise you must get a licenses from Imazen.
