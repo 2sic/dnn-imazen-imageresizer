@@ -55,11 +55,17 @@
     <ItemGroup>
       <ProAssemblies Include="$(SourceBinaries)\ImageResizer.dll" />
       <ProAssemblies Include="$(SourceBinaries)\ImageResizer.Plugins.DiskCache.dll" />
-      <ProAssemblies Include="$(SourceBinaries)\ImageResizer.Plugins.SimpleFilters.dll" />
-      <ProAssemblies Include="$(SourceBinaries)\ImageResizer.Plugins.AdvancedFilters.dll" />
+
+      <!--2020-06-04 2dm decided to drop SimpleFilters - all this can now be done with CSS -->
+      <!--<ProAssemblies Include="$(SourceBinaries)\ImageResizer.Plugins.SimpleFilters.dll" />-->
+
+      <!--2020-06-04 2dm decided to not include Advanced plugins by default, value unclear -->
+      <!--<ProAssemblies Include="$(SourceBinaries)\ImageResizer.Plugins.AdvancedFilters.dll" />
       <ProAssemblies Include="$(SourceBinaries)\AForge.dll" />
       <ProAssemblies Include="$(SourceBinaries)\AForge.Imaging.dll" />
-      <ProAssemblies Include="$(SourceBinaries)\AForge.Math.dll" />
+      <ProAssemblies Include="$(SourceBinaries)\AForge.Math.dll" />-->
+
+      <!-- 2020-06-04 2dm decided to include WebP as it's an important future format -->
       <ProAssemblies Include="$(SourceBinaries)\WebP\ImageResizer.Plugins.WebP.dll" />
       <ProAssemblies Include="$(SourceBinaries)\WebP\Imazen.WebP.dll" />
       <ProAssemblies Include="$(SourceBinaries)\WebP\libwebp.dll" />
