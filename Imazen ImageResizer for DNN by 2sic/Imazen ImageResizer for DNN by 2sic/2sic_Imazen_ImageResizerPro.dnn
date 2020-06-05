@@ -35,7 +35,14 @@
             <assembly><name>ImageResizer.Plugins.DiskCache.dll</name></assembly>
             <assembly><name>ImageResizer.Plugins.WebP.dll</name></assembly>
             <assembly><name>Imazen.WebP.dll</name></assembly>
-            <assembly><name>libwebp.dll</name></assembly>
+            <!--<assembly>
+              <name>libwebp.dll</name>-->
+              <!-- the version here is very important! 
+              because the file is locked in future installations, it makes updates difficult
+              my specifying the exact version, DNN hopefully doesn't try to update it
+              -->
+              <!--<version>0.6.0</version>-->
+            <!--</assembly>-->
           </assemblies>
         </component>
 					
@@ -55,7 +62,7 @@
                       <pipeline defaultCommands="autorotate.default=true" />
                       <plugins>
                         <add name="DiskCache" />
-                        <add name="WebPEncoder" />
+                        <add name="WebPEncoder" downloadnativedependencies="true"/>
                       </plugins>
                     </resizer>
                   </node>
