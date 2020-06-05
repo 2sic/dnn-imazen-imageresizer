@@ -17,41 +17,26 @@
         <dependency type="CoreVersion">07.02.00</dependency>
       </dependencies>
       <components>
-        <component type="Script">
-          <scripts>
-            <basePath>DesktopModules\ToSIC_Imazen_ImageResizer</basePath>
-          </scripts>
+        <component type="ResourceFile">
+          <resourceFiles>
+            <basePath>DesktopModules/ToSIC_SexyContent</basePath>
+            <resourceFile>
+              <name>Resources.zip</name>
+            </resourceFile>
+          </resourceFiles>
         </component>
         <component type="Assembly">
           <assemblies>
             <basePath>bin</basePath>
             <assembly>
               <name>ImageResizer.dll</name>
+              <path>bin</path>
             </assembly>
-            <assembly>
-              <name>ImageResizer.Plugins.DiskCache.dll</name>
-            </assembly>
-
+            <assembly><name>ImageResizer.Plugins.DiskCache.dll</name></assembly>
             <assembly><name>ImageResizer.Plugins.WebP.dll</name></assembly>
             <assembly><name>Imazen.WebP.dll</name></assembly>
             <assembly><name>libwebp.dll</name></assembly>
-          
           </assemblies>
-        </component>
-
-        <component type="File">
-          <files>
-            <basePath>DesktopModules/ToSIC_Imazen_ImageResizer</basePath>
-            <file>
-              <name>icon.png</name>
-            </file>
-            <file>
-              <name>License.txt</name>
-            </file>
-            <file>
-              <name>ReleaseNotes.txt</name>
-            </file>
-          </files>
         </component>
 					
         <component type="Config">
